@@ -1,6 +1,36 @@
 #include "Fractal3d.h"
 
 
+class Fractal{
+    public:
+        virtual void draw()=0;
+        virtual string getName()=0;
+        virtual float getLevel()=0;
+};
+class AbstractFractal{
+    private:
+        string name;
+        int level; 
+    public:
+        AbstractFractal(){
+            this->name="";
+            this->level=0;
+        }
+        AbstractFractal(string name, int level){
+            this->name=name;
+            this->level=level; 
+
+    }
+    //getters 
+    string getName(){return name;}
+    int getLevel(){return level;}
+    //setters 
+    void setName(string name){this->name=name;}
+    void setLevel(int level){this->level=level;}
+    //
+
+};
+
 Fractal3D::Fractal3D(ofEasyCam* cam) : cam(cam){
     
 }

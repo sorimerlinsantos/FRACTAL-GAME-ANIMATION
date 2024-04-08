@@ -16,6 +16,7 @@ class SnowFlake {
   public:
     SnowFlake();
     SnowFlake(glm::vec2 start, glm::vec2 end);
+    bool white=true;
 
     glm::vec2 getStart() const { return start; }
     glm::vec2 getEnd() const { return end; }
@@ -23,7 +24,7 @@ class SnowFlake {
     void setEnd(glm::vec2 end) { this->end = end; }
 
     void draw();
-    void draw(int n, SnowFlake *flake);
+    void draw(int n, SnowFlake *flake, ofColor color);
 
     glm::vec2 getA();
     glm::vec2 getB();

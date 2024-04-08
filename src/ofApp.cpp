@@ -31,10 +31,16 @@ void ofApp::draw() {
         drawMode1(ofGetWidth() / 2, ofGetHeight() / 2, r, circleLevels, ofColor (color));
     } break;
     case '2': {
-        // Tree
+        // Tree 
+        //void ofApp::drawMode2(float x, float y, int n, float length, float rad,ofColor color)
          text.drawString("Tree Fractal",25,60);
         float length = 0.31 * ofGetHeight();
+        float smaller_length= 0.10* ofGetHeight();
+
         drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, treeLevels, length, 1.5 * PI, ofColor (color));
+        drawMode2(ofGetWidth() /8, ofGetHeight() - 3, treeLevels,smaller_length , 1.5 * PI, ofColor (color));
+        drawMode2(ofGetWidth()-180, ofGetHeight() - 3, treeLevels,smaller_length , 1.5 * PI, ofColor (color));
+
     } break;
     case '3': {
         // Sierpinski Triangle
@@ -150,8 +156,12 @@ void ofApp::drawMode3(float x, float y, float size, int n, ofColor color) {
         // Add more colors as needed
     };
     ofColor nextColor = colors[n % (sizeof(colors) / sizeof(colors[0]))];
+
+
     drawMode3(x, y, size / 2, n - 1,nextColor);
     drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1,nextColor);
+    drawMode3((a.x + c.x)/2, (a.y+ c.y) / 2, size / 2, n - 1,nextColor);
+
 }
 
 void ofApp::drawMode4(float x, float y, float n) {

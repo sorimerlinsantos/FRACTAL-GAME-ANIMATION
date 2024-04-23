@@ -3,20 +3,48 @@
 #include <cmath>
 
 #include "ofMain.h"
+#include "CircleFractal.h"
+#include "BarnsleyFractals.h"
+#include "SnowFlake.h"
+#include "Fractal3D.h"
+#include "TreeFractal.h"
+#include "TriangleFractal.h"
+
+
 
 class ofApp : public ofBaseApp {
   private:
     char mode = '1';
-    int levels = 1;
-    int circleLevels = 1;
-    int treeLevels = 1;
-    int triangleLevels = 1;
-    int barnsleyLevels = 5;
-    int snowflakeLevels = 1;
-    int fractal3DLevels= 0;
+    // int levels = 1;
+    // int circleLevels = 1;
+    // int treeLevels = 1;
+    // int triangleLevels = 1;
+    // int barnsleyLevels = 5;
+    // int snowflakeLevels = 1;
+    // int fractal3DLevels= 0;
     float size = 0.74 * ofGetHeight(); 
     bool showInfo = false;
-    float angle = 0;
+    // float angle = 0;
+  
+
+  //levels getters and getters 
+  // cicle.setLevel(circlelevels);
+
+  CircleFractal* circle;
+  TreeFractal* tree;
+  BarnsleyFractals* barnsley;
+  TriangleFractal* triangle;
+  Fractal3D* fractal3d;
+  SnowFlake* snowflake;
+
+  vector <AbstractFractal*> new_vector;
+
+
+
+
+
+
+
 
 
 
@@ -42,10 +70,14 @@ class ofApp : public ofBaseApp {
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
 
-    void drawMode1(float x, float y, float r, int n, ofColor color);
-    void drawMode2(float x, float y, int n, float length, float rad,ofColor color);
-    void drawMode3(float x, float y, float size, int n, ofColor color);
-    void drawMode4(float x, float y, float n);
+    // void drawMode1(float x, float y, float r, int n, ofColor color);
+    // void drawMode2(float x, float y, int n, float length, float rad,ofColor color);
+    // void drawMode3(float x, float y, float size, int n, ofColor color);
+    // void drawMode4(float x, float y, float n);
+
+
+  //vector of pointers 
+  // vector<AbstractFractal*> new_vector;
 
     ofEasyCam cam;
     ofTrueTypeFont text;

@@ -1,35 +1,4 @@
-#include "Fractal3d.h"
-
-
-class Fractal{
-    public:
-        virtual void draw()=0;
-        virtual string getName()=0;
-        virtual float getLevel()=0;
-};
-class AbstractFractal{
-    private:
-        string name;
-        int level; 
-    public:
-        AbstractFractal(){
-            this->name="";
-            this->level=0;
-        }
-        AbstractFractal(string name, int level){
-            this->name=name;
-            this->level=level; 
-
-    }
-    //getters 
-    string getName(){return name;}
-    int getLevel(){return level;}
-    //setters 
-    void setName(string name){this->name=name;}
-    void setLevel(int level){this->level=level;}
-    //
-
-};
+#include "Fractal3D.h"
 
 Fractal3D::Fractal3D(ofEasyCam* cam) : cam(cam){
     
@@ -48,7 +17,7 @@ vec3 Fractal3D::centerOf(vector<vec3>& points) {
     return result;
 }
 
-void Fractal3D::draw(map<string, float> drawConfig) {
+void Fractal3D::drawHelper(map<string, float> drawConfig) {
     if (!mesh.hasVertices() || currentMeshHasDetail != extrudeAllFaces) {
         float scale = drawConfig["scale"];
         vector<vec3> base = {
@@ -63,7 +32,7 @@ void Fractal3D::draw(map<string, float> drawConfig) {
         mesh.setupIndicesAuto();
         currentMeshHasDetail = extrudeAllFaces;
     }
-
+    
     cam->begin();
     ofEnableDepthTest();
 
@@ -76,7 +45,11 @@ void Fractal3D::draw(map<string, float> drawConfig) {
     ofSetColor(255);
     ofDisableDepthTest();
     cam->end();
+}
 
+void Fractal3D::draw(){
+    Fractal3D::reset();
+    drawHelper(map<string, float> {{"n", this->getLevel()}, {"scale", 100}});
 }
 
 void Fractal3D::generateTetrahedron(vector<vec3>& base, vec3 peak, int n) {

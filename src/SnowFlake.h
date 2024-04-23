@@ -2,13 +2,14 @@
 
 #include "ofMain.h"
 #include <cmath>
+#include "AbstractFractal.h"
 
 /**
  * @brief Koch SnowFlake Fractal
  *
  */
 
-class SnowFlake {
+class SnowFlake: public AbstractFractal {
   private:
     glm::vec2 start;
     glm::vec2 end;
@@ -22,9 +23,8 @@ class SnowFlake {
     glm::vec2 getEnd() const { return end; }
     void setStart(glm::vec2 start) { this->start = start; }
     void setEnd(glm::vec2 end) { this->end = end; }
-
     void draw();
-    void draw(int n, SnowFlake *flake, ofColor color);
+    void drawHelper(int n, SnowFlake *flake);
 
     glm::vec2 getA();
     glm::vec2 getB();

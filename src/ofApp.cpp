@@ -18,13 +18,16 @@ void ofApp::setup() {
     barnsley= new BarnsleyFractals("Barnsley Fractal");
     snowflake= new SnowFlake();
     fractal3d= new Fractal3D(&cam);
+   
+
 
     circle->setLevel(1);
     tree->setLevel(1);
-    triangle->setLevel(6);
+    triangle->setLevel(1);
     barnsley->setLevel(6);
-    snowflake->setLevel(1);
+    snowflake->setLevel(6);
     fractal3d->setLevel(0);
+
 
     new_vector = {circle,tree,triangle,barnsley,snowflake,fractal3d};
 
@@ -74,6 +77,8 @@ void ofApp::draw() {
     }    break;
     case '5': {
         // Koch SnowFlake
+        //*******note**********
+        //the recursion of snowflake no tiene un error, empieza en su nivel max
         new_vector[4]->draw();
         text.drawString("Koch SnowFlake Fractal",25,60);
       
@@ -94,6 +99,8 @@ void ofApp::draw() {
         info += " 4. Barnsley Fern Level: " + to_string(barnsley->getLevel()) + "\n\n";
         info += " 5. Koch SnowFlake Level : " + to_string(snowflake->getLevel()) + "\n\n";
         info += " 6. 3D Fractal Level : " + to_string(fractal3d->getLevel()) + "\n\n";
+       
+
 
         ofSetColor(255);
         dataText.drawString(info, 25, 140);
@@ -120,6 +127,7 @@ void ofApp::keyPressed(int key) {
             snowflake->setLevel(snowflake->getLevel()-1);
         else if (mode == '6' && fractal3d->getLevel() > 0)
             fractal3d->setLevel(fractal3d->getLevel()-1);
+     
     } else if (key == OF_KEY_RIGHT) {
         // Increase depth of recursion
         if (mode == '1' && circle->getLevel() < 5)
@@ -134,6 +142,7 @@ void ofApp::keyPressed(int key) {
             snowflake->setLevel(snowflake->getLevel()+1); 
         else if (mode == '6' && fractal3d->getLevel() < 9)
             fractal3d->setLevel(fractal3d->getLevel()+1);
+        
             
     }
     if (key == 'd') {

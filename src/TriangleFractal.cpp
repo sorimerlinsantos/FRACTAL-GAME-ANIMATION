@@ -7,8 +7,10 @@ void TriangleFractal::drawHelper(float x, float y, float size, int n) {
     ofPoint b(x + size, y);
     ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
 
+    //drawHelper(x, y, size, n - 1);  
     drawHelper(x, y, size / 2, n - 1);
     drawHelper((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1);
+    //drawHelper((a.x + c.x)/2, (a.y+ c.y) / 2, size / 2, n - 1);
 
     // ofSetColor(color);
     // ofDrawTriangle(a, b, c);
@@ -27,17 +29,20 @@ void TriangleFractal::drawHelper(float x, float y, float size, int n) {
     // if (n > 1 ) {
     //     ofSetColor(ofColor::green);
     // }
-    if (n > 1 && n < 3) {
+    if (n==1) {
         ofSetColor(ofColor::yellow);   
     }
-    else if (n >  3 && n < 4) {
+    else if (n==2) {
         ofSetColor(ofColor::green);   
     } 
-    else if (n >  4 && n < 6) {
+    else if (n==3) {
+        ofSetColor(ofColor::red);   
+    } 
+    else if (n==4) {
         ofSetColor(ofColor::blue);   
-    } else if (n  > 6  && n< 8) {
+    } else if (n  > 4  && n< 7) {
         ofSetColor(ofColor::red);    
-    } else if(n > 8 && n< 10 ){
+    } else if(n > 12 && n<= 15 ){
         ofSetColor(ofColor::green); 
     }
     ofDrawTriangle(a, b, c);

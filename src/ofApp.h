@@ -9,6 +9,7 @@
 #include "Fractal3D.h"
 #include "TreeFractal.h"
 #include "TriangleFractal.h"
+#include "SunflowerFractal.h"
 
 
 
@@ -36,6 +37,7 @@ class ofApp : public ofBaseApp {
   TriangleFractal* triangle;
   Fractal3D* fractal3d;
   SnowFlake* snowflake;
+  SunflowerFractal* sunflower;
 
   vector <AbstractFractal*> new_vector;
 
@@ -52,6 +54,10 @@ class ofApp : public ofBaseApp {
     void setup();
     void update();
     void draw();
+    bool isAnimating = false; 
+    int animationdirection=1;
+    int Counter = 0;
+    const int frame= 5;
     
     
     glm::vec2 p1 = {(ofGetWidth() - size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};

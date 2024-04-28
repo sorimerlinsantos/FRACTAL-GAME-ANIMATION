@@ -18,6 +18,7 @@ void ofApp::setup() {
     barnsley= new BarnsleyFractals("Barnsley Fractal");
     snowflake= new SnowFlake();
     fractal3d= new Fractal3D(&cam);
+    sunflower= new SunflowerFractal("SunFlower Fractal");
    
 
 
@@ -27,21 +28,64 @@ void ofApp::setup() {
     barnsley->setLevel(6);
     snowflake->setLevel(6);
     fractal3d->setLevel(0);
+    sunflower->setLevel(0);
 
 
-    new_vector = {circle,tree,triangle,barnsley,snowflake,fractal3d};
+    new_vector = {circle,tree,triangle,barnsley,snowflake,fractal3d,sunflower};
 
 }
 //--------------------------------------------------------------
 void ofApp::update() {
+
+    if(isAnimating){
+        Counter++;
+        if(Counter>=frame){
+            Counter=0;
+            if (mode>='1' && mode<='7'){
+                int index = mode-'1';
+                int currentLevel = new_vector[index]->getLevel();
+                int maxLevel = 5;
+                if(mode=='1'){
+                    maxLevel =5;
+                }
+                else if(mode=='2'){
+                    maxLevel =15;
+                }
+                 else if(mode=='3'){
+                    maxLevel =10;
+                }
+                 else if(mode=='4'){
+                    maxLevel =10;
+                }
+                 else if(mode=='5'){
+                    maxLevel =6;
+                }
+                 else if(mode=='6'){
+                    maxLevel =9;
+                }
+                else if(mode=='7'){
+                    maxLevel =82;
+                }
+                currentLevel+= animationdirection; 
+                if(currentLevel>=maxLevel){
+                    currentLevel = maxLevel;
+                    animationdirection=-1;
+                }
+                else if(currentLevel<1){
+                    currentLevel = 1;
+                    animationdirection = 1;
+                }
+                new_vector[index]->setLevel(currentLevel);
+        }
+    }
+ }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
     ofBackgroundGradient(ofColor(65), ofColor(0), OF_GRADIENT_BAR);
 
-   dataText.drawString("Press the right arrow to level up the recursion",1025,40);
-   dataText.drawString("Press the right arrow to level up the recursion",1025,80);
+   
 
    // myVec = {circle, square, lightning}
    // myVec[0].draw()
@@ -88,6 +132,10 @@ void ofApp::draw() {
         new_vector[5]->draw();
         text.drawString("3d Fractal",25,60);
     }   break;
+     case '7':{
+        new_vector[6]->draw();
+        text.drawString("SunFlower Fractal",25,60);
+    } break;
     }
 
 
@@ -99,9 +147,9 @@ void ofApp::draw() {
         info += " 4. Barnsley Fern Level: " + to_string(barnsley->getLevel()) + "\n\n";
         info += " 5. Koch SnowFlake Level : " + to_string(snowflake->getLevel()) + "\n\n";
         info += " 6. 3D Fractal Level : " + to_string(fractal3d->getLevel()) + "\n\n";
-       
-
-
+        dataText.drawString("Press the right arrow to level up the recursion",1025,40);
+        dataText.drawString("Press the left arrow to level down the recursion",1025,80);
+    
         ofSetColor(255);
         dataText.drawString(info, 25, 140);
     }
@@ -110,7 +158,7 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-    if (key >= '1' && key <= '6'){
+    if (key >= '1' && key <= '7'){
         mode = key;
     }
     if (key == OF_KEY_LEFT) {
@@ -127,6 +175,8 @@ void ofApp::keyPressed(int key) {
             snowflake->setLevel(snowflake->getLevel()-1);
         else if (mode == '6' && fractal3d->getLevel() > 0)
             fractal3d->setLevel(fractal3d->getLevel()-1);
+        else if (mode == '7' && sunflower->getLevel() >0)
+            sunflower->setLevel(sunflower->getLevel()-1);
      
     } else if (key == OF_KEY_RIGHT) {
         // Increase depth of recursion
@@ -142,9 +192,19 @@ void ofApp::keyPressed(int key) {
             snowflake->setLevel(snowflake->getLevel()+1); 
         else if (mode == '6' && fractal3d->getLevel() < 9)
             fractal3d->setLevel(fractal3d->getLevel()+1);
-        
-            
+        else if (mode == '7' && sunflower->getLevel() < 82)
+            sunflower->setLevel(sunflower->getLevel()+1);
     }
+        else if(key == ' '){
+            if (!isAnimating){
+                isAnimating=true;
+                Counter=0;
+                animationdirection = 1;
+            }
+            else{
+                isAnimating=false;
+            }
+        }
     if (key == 'd') {
         showInfo = !showInfo;
     }

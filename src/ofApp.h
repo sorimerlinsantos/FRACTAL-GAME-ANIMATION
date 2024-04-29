@@ -10,6 +10,8 @@
 #include "TreeFractal.h"
 #include "TriangleFractal.h"
 #include "SunflowerFractal.h"
+#include "CherryBlossoms.h"
+#include "Bubbles.h"
 
 
 
@@ -38,6 +40,9 @@ class ofApp : public ofBaseApp {
   Fractal3D* fractal3d;
   SnowFlake* snowflake;
   SunflowerFractal* sunflower;
+  CherryBlossoms* cherryblossoms;
+  Bubbles* bubbles;
+
 
   vector <AbstractFractal*> new_vector;
 

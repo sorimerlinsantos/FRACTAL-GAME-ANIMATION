@@ -19,6 +19,8 @@ void ofApp::setup() {
     snowflake= new SnowFlake();
     fractal3d= new Fractal3D(&cam);
     sunflower= new SunflowerFractal("SunFlower Fractal");
+    cherryblossoms= new CherryBlossoms("Cherry Blossoms Fractal");
+    bubbles=  new Bubbles("Cherry Blossoms Fractal");
    
 
 
@@ -29,9 +31,12 @@ void ofApp::setup() {
     snowflake->setLevel(6);
     fractal3d->setLevel(0);
     sunflower->setLevel(0);
+    cherryblossoms->setLevel(0);
+    bubbles->setLevel(0);
+    
 
 
-    new_vector = {circle,tree,triangle,barnsley,snowflake,fractal3d,sunflower};
+    new_vector = {circle,tree,triangle,barnsley,snowflake,fractal3d,sunflower,cherryblossoms,bubbles};
 
 }
 //--------------------------------------------------------------
@@ -41,7 +46,7 @@ void ofApp::update() {
         Counter++;
         if(Counter>=frame){
             Counter=0;
-            if (mode>='1' && mode<='7'){
+            if (mode>='1' && mode<='9'){
                 int index = mode-'1';
                 int currentLevel = new_vector[index]->getLevel();
                 int maxLevel = 5;
@@ -66,6 +71,14 @@ void ofApp::update() {
                 else if(mode=='7'){
                     maxLevel =82;
                 }
+                else if(mode=='8'){
+                    maxLevel =20;
+                }
+                else if(mode=='9'){
+                    maxLevel=5;
+                }
+
+                
                 currentLevel+= animationdirection; 
                 if(currentLevel>=maxLevel){
                     currentLevel = maxLevel;
@@ -96,6 +109,7 @@ void ofApp::draw() {
     case '1': {
         // Circle
         new_vector[0]->draw();
+        ofSetColor(ofColor::white); 
         text.drawString("Circle Fractal",25,60);
         
     } break;
@@ -103,6 +117,7 @@ void ofApp::draw() {
         // Tree 
 
         new_vector[1]->draw();
+        ofSetColor(ofColor::white); 
         text.drawString("Tree Fractal",25,60);
      
      
@@ -110,12 +125,14 @@ void ofApp::draw() {
     case '3': {
         // Sierpinski Triangle
         new_vector[2]->draw();
+        ofSetColor(ofColor::white); 
         text.drawString("Sierpinksi Triange Fractal",25,60);
 
     } break;
     case '4': {
         // Barnsley Fern
         new_vector[3]->draw();
+        ofSetColor(ofColor::white); 
         text.drawString("Barnsley Fern Fractal",25,60);
         // drawMode4(0, 0, barnsleyLevels * 1000);
     }    break;
@@ -124,18 +141,32 @@ void ofApp::draw() {
         //*******note**********
         //the recursion of snowflake no tiene un error, empieza en su nivel max
         new_vector[4]->draw();
+        ofSetColor(ofColor::white); 
         text.drawString("Koch SnowFlake Fractal",25,60);
       
     }   break; 
     case '6': {
         //3d Fractal
         new_vector[5]->draw();
+        ofSetColor(ofColor::white); 
         text.drawString("3d Fractal",25,60);
     }   break;
      case '7':{
         new_vector[6]->draw();
+        ofSetColor(ofColor::white); 
         text.drawString("SunFlower Fractal",25,60);
     } break;
+    case '8':{
+        new_vector[7]->draw();
+        ofSetColor(ofColor::white); 
+        text.drawString("Cherry Blossoms Fractal",25,60);
+    } break;
+    case '9':{
+        new_vector[8]->draw();
+        ofSetColor(ofColor::white); 
+        text.drawString("Bubbles Fractal",25,60);
+    } break;
+
     }
 
 
@@ -147,6 +178,12 @@ void ofApp::draw() {
         info += " 4. Barnsley Fern Level: " + to_string(barnsley->getLevel()) + "\n\n";
         info += " 5. Koch SnowFlake Level : " + to_string(snowflake->getLevel()) + "\n\n";
         info += " 6. 3D Fractal Level : " + to_string(fractal3d->getLevel()) + "\n\n";
+        info += " 7. SunFlower Fractal: " + to_string(sunflower->getLevel()) + "\n\n";
+        info += " 8. Cherry Blossoms Fractal: " + to_string(cherryblossoms->getLevel()) + "\n\n";
+        info += " 9.Bubbles Fractal:" + to_string(bubbles->getLevel()) + "\n\n";
+
+
+
         dataText.drawString("Press the right arrow to level up the recursion",1025,40);
         dataText.drawString("Press the left arrow to level down the recursion",1025,80);
     
@@ -158,7 +195,7 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-    if (key >= '1' && key <= '7'){
+    if (key >= '1' && key <= '9'){
         mode = key;
     }
     if (key == OF_KEY_LEFT) {
@@ -177,6 +214,11 @@ void ofApp::keyPressed(int key) {
             fractal3d->setLevel(fractal3d->getLevel()-1);
         else if (mode == '7' && sunflower->getLevel() >0)
             sunflower->setLevel(sunflower->getLevel()-1);
+        else if (mode == '8' && cherryblossoms->getLevel() >0)
+            cherryblossoms->setLevel(cherryblossoms->getLevel()-1);
+        else if (mode == '9' && bubbles->getLevel() >0)
+            bubbles->setLevel(bubbles->getLevel()-1);
+        
      
     } else if (key == OF_KEY_RIGHT) {
         // Increase depth of recursion
@@ -194,6 +236,11 @@ void ofApp::keyPressed(int key) {
             fractal3d->setLevel(fractal3d->getLevel()+1);
         else if (mode == '7' && sunflower->getLevel() < 82)
             sunflower->setLevel(sunflower->getLevel()+1);
+        else if (mode == '8' && cherryblossoms->getLevel() < 20)
+            cherryblossoms->setLevel(cherryblossoms->getLevel()+1);
+        else if (mode == '9' && bubbles->getLevel() < 5)
+            bubbles->setLevel(bubbles->getLevel()+1);
+        
     }
         else if(key == ' '){
             if (!isAnimating){

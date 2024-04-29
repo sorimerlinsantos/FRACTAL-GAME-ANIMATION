@@ -1,8 +1,6 @@
-
 #pragma once
 #include "ofMain.h"
 
-// OF MAIN.H VIENE DE FRAMEWORKS, Y ES LA RAMA BASE;
 class Fractal{
     public:
         virtual void draw()=0;

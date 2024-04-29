@@ -7,10 +7,7 @@ SnowFlake::SnowFlake(glm::vec2 start, glm::vec2 end) {
     this->start = start;
     this->end = end;
 }
-//what i am suppose to make as "recursive here"
-//tengo 3 tipos de draw 
-
-
+ 
 void SnowFlake::drawHelper(int n, SnowFlake *flake) {
     if (n < getLevel()){
         ofDrawLine(flake->getStart(), flake->getEnd());

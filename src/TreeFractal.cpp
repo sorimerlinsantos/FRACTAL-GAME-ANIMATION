@@ -9,14 +9,6 @@
     float x2 = x + length * cos(rad);
     float y2 = y + length * sin(rad);
 
-    // ofDrawLine(x, y, x2, y2);
-    // ofColor colors[] = {
-    //     ofColor(0, 255, 0),     // Green
-    //     ofColor(128, 0, 128),   // Purple
-    //     ofColor(165, 42, 42), 
-    //     // Add more colors as needed
-    // };
-    // ofColor nextColor = colors[n % (sizeof(colors) / sizeof(colors[0]))];
     ofDrawLine(x, y, x2, y2);
     if (n<= 0) return;
     else if (n > 3) {

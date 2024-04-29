@@ -4,7 +4,7 @@
     void CherryBlossoms::drawHelper(float x, float y, int n, float length, float rad) {
 
 
-    // ofSetColor(color);
+   
     float x2 = x + length * cos(rad);
     float y2 = y + length* sin(rad) ;
 
@@ -46,4 +46,4 @@
     drawHelper(ofGetWidth() / 2, ofGetHeight() -80, this->getLevel(), length, 1.5 * PI);
 
 }
-///is breaking itself
+

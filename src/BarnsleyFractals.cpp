@@ -13,8 +13,7 @@ void BarnsleyFractals::drawHelper(float x, float y, float n) {
     float py = ofMap(y, 0, 9.9983, ofGetHeight(), 0);
 
     ofFill();
-    // else if (n > 10000) {
-    //     // ofSetColor(ofColor::green);
+    
     if (n < 1000) {
         ofSetColor(ofColor::yellow);   
     } else if (n >= 1000 && n < 2000) {
@@ -36,37 +35,7 @@ void BarnsleyFractals::drawHelper(float x, float y, float n) {
         ofSetColor(ofColor::blue);    
     }
      
-
- 
-   
-
-
-    
-    
-    
-    //else {
-        //ofSetColor(ofColor::yellow); 
-    //}
-   
-
-    // ofSetColor(ofColor::green); // Set color for this level
     ofDrawCircle(px, py, 0.6);
-    // ofSetColor(ofColor::yellow);   
-    // ofSetColor(ofColor::white); // Reset color to white for consistency
-
-    // Define an array of colors for each recursion level
-    // ofColor colors[] = {
-    //     ofColor(255, 0, 0),   // Red
-    //     ofColor(0, 255, 0),   // Green
-    //     ofColor(0, 0, 255),   // Blue
-    //     ofColor(255, 255, 0), // Yellow
-    //     // Add more colors as needed
-    // };
-    
-    // // Get the color for the next recursion level
-    // ofColor nextColor = colors[(int)n % (sizeof(colors) / sizeof(colors[0]))];
-
-   
 
     if (r < 0.01)
         drawHelper(0, 0.16 * y, n - 1);

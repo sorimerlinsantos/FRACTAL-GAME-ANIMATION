@@ -72,7 +72,7 @@ void ofApp::update() {
                     maxLevel =82;
                 }
                 else if(mode=='8'){
-                    maxLevel =20;
+                    maxLevel =18;
                 }
                 else if(mode=='9'){
                     maxLevel=5;
@@ -97,12 +97,6 @@ void ofApp::update() {
 //--------------------------------------------------------------
 void ofApp::draw() {
     ofBackgroundGradient(ofColor(65), ofColor(0), OF_GRADIENT_BAR);
-
-   
-
-   // myVec = {circle, square, lightning}
-   // myVec[0].draw()
-   // myVec[mode-1].draw()
 
     ofNoFill();
     switch (mode) {
@@ -138,8 +132,7 @@ void ofApp::draw() {
     }    break;
     case '5': {
         // Koch SnowFlake
-        //*******note**********
-        //the recursion of snowflake no tiene un error, empieza en su nivel max
+        
         new_vector[4]->draw();
         ofSetColor(ofColor::white); 
         text.drawString("Koch SnowFlake Fractal",25,60);
@@ -152,16 +145,20 @@ void ofApp::draw() {
         text.drawString("3d Fractal",25,60);
     }   break;
      case '7':{
+        // SunFlowerFractal
         new_vector[6]->draw();
         ofSetColor(ofColor::white); 
         text.drawString("SunFlower Fractal",25,60);
+        
     } break;
     case '8':{
+        // CherryBlossomFractal
         new_vector[7]->draw();
         ofSetColor(ofColor::white); 
         text.drawString("Cherry Blossoms Fractal",25,60);
     } break;
     case '9':{
+        // BubblesFractal
         new_vector[8]->draw();
         ofSetColor(ofColor::white); 
         text.drawString("Bubbles Fractal",25,60);
@@ -241,7 +238,7 @@ void ofApp::keyPressed(int key) {
         else if (mode == '9' && bubbles->getLevel() < 5)
             bubbles->setLevel(bubbles->getLevel()+1);
         
-    }
+    }   //Starts animation sequence
         else if(key == ' '){
             if (!isAnimating){
                 isAnimating=true;
